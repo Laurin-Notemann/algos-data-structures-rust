@@ -33,11 +33,11 @@ impl<'a, T: Display> List<'a, T> {
             self.last = item;
         } else {
             //self.previous_item = self.last;
-            self.last.unwrap().set_next_item(item);
-            item
-                .unwrap_or_else(|| println!("Node value is none"))
-                .set_previous_item(self.last);
-            self.last = item;
+//             self.last.unwrap().set_next_item(&item);
+//             item
+//                 .unwrap_or_else(|| println!("Node value is none"))
+//                 .set_previous_item(self.last);
+//             self.last = item;
         }
     }
 

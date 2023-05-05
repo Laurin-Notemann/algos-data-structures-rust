@@ -1,5 +1,5 @@
 [package]
-name = "iterator_testing"
+name = "algos_and_data_structures"
 version = "0.1.0"
 edition = "2021"
 

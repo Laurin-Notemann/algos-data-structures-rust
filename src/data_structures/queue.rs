@@ -9,6 +9,7 @@ impl<T> Queue<T> {
 
 #[derive(Debug)]
 struct Node<T> {
+    data: T,
 }
 
 impl<T> Queue<T> {
