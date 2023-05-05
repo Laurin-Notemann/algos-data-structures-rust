@@ -1,7 +1,7 @@
-pub mod queue;
-pub mod list;
-use queue::queue_test;
-use list::list_test;
+pub mod algos;
+pub mod data_structures;
+use data_structures::queue::queue_test;
+use data_structures::list::list_test;
 
 fn main() {
     // list_test();
