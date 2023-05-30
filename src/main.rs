@@ -10,4 +10,5 @@ fn main() {
   //  queue_test(); 
 //    insertion::insertion_sort(); 
     data_structures::stack::test_stack();
+    data_structures::queue::queue_test();
 }
