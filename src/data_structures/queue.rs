@@ -55,12 +55,9 @@ impl<T: Clone> Queue<T> {
         if let Some(head) = &self.head.take() {
             let current_head = Some(head.borrow_mut().data.to_owned());
             self.head = head.borrow_mut().next_node.to_owned();
-<<<<<<< HEAD
-=======
             if self.head.is_none(){
                 self.tail = None;
             }
->>>>>>> 353b294 (feat: complete Queue)
             current_head
         } else {
             None    
@@ -69,10 +66,9 @@ impl<T: Clone> Queue<T> {
 
 
     pub fn peek(&self) -> Option<T> {
-        if let Some(head) = &self.head {
-            Some(head.borrow_mut().data.to_owned())
-        }else {
-            None
+        match &self.head {
+            Some(head) => Some(head.borrow_mut().data.to_owned()),
+            None => None,
         }
     }
 
@@ -107,8 +103,6 @@ pub fn queue_test(){
         Some(data) => println!("{}", data),
         None => println!("Could not peek"),
     };
-<<<<<<< HEAD
-=======
 
     println!("{}", queue.dequeue().unwrap());
     println!("{:?}", queue);
@@ -118,5 +112,4 @@ pub fn queue_test(){
         Some(dongs) => println!("{}", dongs),
         _ => println!("dings"),
     }
->>>>>>> 353b294 (feat: complete Queue)
 }
