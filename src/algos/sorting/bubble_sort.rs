@@ -1,18 +1,11 @@
 pub fn bubbleee_sort(arr: &mut Vec<isize>) {
-    let mut sorted_elements = 1;
-    loop {
-        for i in 0..arr.len() - sorted_elements {
-            if arr[i] > arr[i+1] {
-                let smaller_element = arr[i+1];
-                arr[i+1] = arr[i];
-                arr[i] = smaller_element;
+    for i in 0..arr.len(){
+        for j in 0..arr.len() - 1 - i {
+            if arr[j] > arr[j+1] {
+                let smaller_element = arr[j+1];
+                arr[j+1] = arr[j];
+                arr[j] = smaller_element;
             }
-        }
-
-        sorted_elements += 1;
-        println!("{}", sorted_elements);
-        if sorted_elements >= arr.len() {
-            break;
         }
     }
 
