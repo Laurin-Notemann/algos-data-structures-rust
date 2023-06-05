@@ -58,10 +58,10 @@ impl<T: Clone> Queue<T> {
             if self.head.is_none(){
                 self.tail = None;
             }
-            current_head
-        } else {
-            None    
+            return current_head;
         }
+        return None;
+        
     }
 
 
