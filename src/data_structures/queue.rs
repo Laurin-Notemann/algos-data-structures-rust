@@ -27,23 +27,18 @@ impl<T: Clone> Queue<T> {
         return Queue { head: None, tail: None };
     }
 
-
-
     pub fn enqueue(&mut self, data: T) {
         let new_node = Node::new(data);
         let new_node_weak = Rc::downgrade(&new_node);
 
         match self.tail.take() {
             Some(tail) => {
-                if let Some(tail_strong) = tail.upgrade() {
-                    tail_strong.borrow_mut().next_node = Some(new_node.clone());
-                } else {
-                    self.head = Some(new_node.clone());
-                }
+                let tail_strong = tail.upgrade().unwrap();
+                tail_strong.borrow_mut().next_node = Some(Rc::clone(&new_node));
                 self.tail = Some(new_node_weak);
             },
             None => {
-                self.head = Some(new_node.clone());
+                self.head = Some(Rc::clone(&new_node));
                 self.tail = Some(new_node_weak);
 
             }
@@ -51,19 +46,24 @@ impl<T: Clone> Queue<T> {
     }
 
     pub fn dequeue(&mut self) -> Option<T> {
-
         if let Some(head) = &self.head.take() {
-            let current_head = Some(head.borrow_mut().data.to_owned());
-            self.head = head.borrow_mut().next_node.to_owned();
-            if self.head.is_none(){
-                self.tail = None;
+            let value_from_head = Some(head.borrow_mut().data.to_owned());
+            let head = head.borrow_mut();
+            let next_node = head.next_node.as_ref();
+            match next_node {
+                Some(node) => {
+                    self.head = Some(Rc::clone(node));
+                },
+                None => {
+                    self.head = None;
+                    self.tail = None;
+                },
             }
-            return current_head;
+            return value_from_head;
         }
         return None;
         
     }
-
 
     pub fn peek(&self) -> Option<T> {
         match &self.head {
