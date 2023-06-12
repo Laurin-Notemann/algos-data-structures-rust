@@ -11,5 +11,6 @@ fn main() {
 //    data_structures::stack::test_stack();
     // data_structures::queue::queue_test();
     // algos::search::linear_search::test_linear_search();
-    algos::search::binary_search::test_binary_search();
+    // algos::search::binary_search::test_binary_search();
+    data_structures::list::list_test();
 }
